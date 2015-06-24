@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="News Feed" />
+    <item android:title="Start a Party" />
+    <item android:title="Party Central" />
+    <item android:title="Albums" />
+    <item android:title="Friends" />
+    <item android:title="Logout" />
+</menu>
