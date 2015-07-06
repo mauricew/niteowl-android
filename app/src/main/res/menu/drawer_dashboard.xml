@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="News Feed" />
-    <item android:title="Start a Party" />
-    <item android:title="Party Central" />
-    <item android:title="Albums" />
-    <item android:title="Friends" />
-    <item android:title="Logout" />
+    <item
+        android:title="News Feed"
+        android:icon="@drawable/ic_home_white" />
+    <item
+        android:title="Start a Party"/>
+    <item
+        android:title="Party Central"
+        android:icon="@drawable/ic_cake_white"/>
+    <item
+        android:title="Albums"
+        android:icon="@drawable/ic_photo_library_white"/>
+    <item
+        android:title="Friends"
+        android:icon="@drawable/ic_people_white"/>
+    <item
+        android:title="Logout" />
 </menu>
