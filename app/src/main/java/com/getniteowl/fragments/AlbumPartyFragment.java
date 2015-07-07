@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.transition.Visibility;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.getniteowl.R;
-import com.getniteowl.adapters.AlbumPartyAdapter;
+import com.getniteowl.adapters.AlbumAdapter;
 import com.getniteowl.models.Party;
 import com.getniteowl.models.PartyPhoto;
 
@@ -62,7 +61,7 @@ public class AlbumPartyFragment extends Fragment {
             @Override
             public Void then(Task<List<PartyPhoto>> task) throws Exception {
                 List<PartyPhoto> photos = task.getResult();
-                partyAlbum.setAdapter(new AlbumPartyAdapter(getActivity(), photos));
+                partyAlbum.setAdapter(new AlbumAdapter(getActivity(), photos));
                 ((TextView) rootView.findViewById(R.id.scrapbook_album_count)).setText(photos.size() + " photos");
                 return null;
             }

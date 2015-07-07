@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.getniteowl.R;
-import com.getniteowl.adapters.FriendsAdapter;
+import com.getniteowl.adapters.UsersAdapter;
 import com.getniteowl.models.Party;
 import com.getniteowl.models.PartyMember;
 import com.parse.ParseUser;
@@ -80,7 +80,7 @@ public class PartyCentralMembersFragment extends Fragment {
                 for (PartyMember pm : task.getResult()) {
                     members.add(pm.getMember());
                 }
-                partyMembers.setAdapter(new FriendsAdapter(getActivity(), members));
+                partyMembers.setAdapter(new UsersAdapter(getActivity(), members));
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR);

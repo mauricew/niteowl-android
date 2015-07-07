@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.getniteowl.R;
-import com.getniteowl.adapters.AlbumPartyAdapter;
+import com.getniteowl.adapters.AlbumAdapter;
 import com.getniteowl.models.Party;
 import com.getniteowl.models.PartyPhoto;
 import com.parse.GetCallback;
@@ -62,7 +62,7 @@ public class AlbumActivityFragment extends Fragment {
                     @Override
                     public Void then(Task<List<PartyPhoto>> task) throws Exception {
                         List<PartyPhoto> photos = task.getResult();
-                        partyAlbum.setAdapter(new AlbumPartyAdapter(getActivity(), photos));
+                        partyAlbum.setAdapter(new AlbumAdapter(getActivity(), photos));
                         final ImageView headerImage = (ImageView) getActivity().findViewById(R.id.list_scrapbook_image);
                         ((CollapsingToolbarLayout)getActivity().findViewById(R.id.ctl_albumparty)).setTitle(party.getName());
                         ((TextView) getActivity().findViewById(R.id.scrapbook_album_count)).setText(photos.size() + " photos");

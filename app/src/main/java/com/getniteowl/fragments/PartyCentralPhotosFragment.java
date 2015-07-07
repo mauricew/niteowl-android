@@ -4,15 +4,15 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.getniteowl.R;
-import com.getniteowl.adapters.AlbumPartyAdapter;
+import com.getniteowl.adapters.AlbumAdapter;
 import com.getniteowl.models.Party;
 import com.getniteowl.models.PartyPhoto;
 
@@ -64,19 +64,30 @@ public class PartyCentralPhotosFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_party_central_photos, container, false);
 
         final RecyclerView partyPhotos = (RecyclerView) rootView.findViewById(R.id.party_photos);
+        final SwipeRefreshLayout swlPhotos = (SwipeRefreshLayout) rootView.findViewById(R.id.swiperefresh_party_photos);
+        SwipeRefreshLayout.OnRefreshListener swipeListener = new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                party.getPhotosAsync().onSuccess(new Continuation<List<PartyPhoto>, Void>() {
+                    @Override
+                    public Void then(Task<List<PartyPhoto>> task) throws Exception {
+                        List<PartyPhoto> photos = task.getResult();
+                        partyPhotos.setAdapter(new AlbumAdapter(getActivity(), photos));
+
+                        swlPhotos.setRefreshing(false);
+
+                        return null;
+                    }
+                }, Task.UI_THREAD_EXECUTOR);
+            }
+        };
 
         GridLayoutManager layoutMan = new GridLayoutManager(getActivity(), 2);
         layoutMan.setOrientation(GridLayoutManager.VERTICAL);
         partyPhotos.setLayoutManager(layoutMan);
 
-        party.getPhotosAsync().onSuccess(new Continuation<List<PartyPhoto>, Void>() {
-            @Override
-            public Void then(Task<List<PartyPhoto>> task) throws Exception {
-                List<PartyPhoto> photos = task.getResult();
-                partyPhotos.setAdapter(new AlbumPartyAdapter(getActivity(), photos));
-                return null;
-            }
-        }, Task.UI_THREAD_EXECUTOR);
+        swipeListener.onRefresh();
+        swlPhotos.setOnRefreshListener(swipeListener);
 
         return rootView;
     }

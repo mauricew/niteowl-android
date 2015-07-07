@@ -2,12 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_header"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="144dp"
     android:background="?android:attr/selectableItemBackground"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="16dp"
     android:paddingBottom="8dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-48dp"
+        android:alpha="0.25"
+        android:scaleType="fitEnd"
+        android:src="@drawable/niteowl_logo_tp" />
     
     <ImageView
         android:id="@+id/drawer_profile_photo"
@@ -16,10 +26,12 @@
         android:layout_alignParentTop="true"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/drawer_profile_action"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_below="@+id/drawer_profile_photo"
+        android:layout_marginTop="12dp">
 
         <TextView
             android:id="@+id/drawer_profile_username"

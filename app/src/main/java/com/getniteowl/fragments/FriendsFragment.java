@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +21,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.getniteowl.R;
-import com.getniteowl.adapters.FriendsAdapter;
+import com.getniteowl.adapters.UsersAdapter;
 import com.getniteowl.models.Friend;
 import com.parse.CountCallback;
 import com.parse.ParseException;
@@ -30,7 +29,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -63,7 +61,7 @@ public class FriendsFragment extends Fragment {
         Friend.getCurrentFriendsQuery().onSuccess(new Continuation<List<ParseUser>, Void>() {
             @Override
             public Void then(Task<List<ParseUser>> task) throws Exception {
-                FriendsAdapter adapter = new FriendsAdapter(getActivity(), task.getResult());
+                UsersAdapter adapter = new UsersAdapter(getActivity(), task.getResult());
                 friendsList.setAdapter(adapter);
                 return null;
             }
